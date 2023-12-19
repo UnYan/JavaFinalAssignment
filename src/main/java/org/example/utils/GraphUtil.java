@@ -23,9 +23,19 @@ public class GraphUtil {
                     APIEntry apiEntry1 = mashupEntry.relatedApis.get(i);
                     APIEntry apiEntry2 = mashupEntry.relatedApis.get(j);
                     graph[apiEntry1.ID][apiEntry2.ID] += 1;
+                    graph[apiEntry2.ID][apiEntry1.ID] += 1;
                 }
             }
         }
-        System.out.println(graph.toString());
+        int count = 0;
+        for (i = 0; i < graph.length; i++) {
+            for (j = 0; j < graph[i].length; j++) {
+                if(graph[i][j] != 0) {
+                    count ++;
+                    System.out.println(APIEntry.apiList.get(i).name + " - " + APIEntry.apiList.get(j).name + " : " + graph[i][j]);
+                }
+            }
+        }
+        System.out.println(count);
     }
 }
